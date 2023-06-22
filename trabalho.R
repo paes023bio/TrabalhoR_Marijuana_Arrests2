@@ -1,4 +1,5 @@
 #trabalho R
 i<- 10
 x<- length(i)
-x
+x 
+print(c(i,x))
