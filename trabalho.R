@@ -55,7 +55,7 @@ Marijuana_Arrests_new<- Marijuana_Arrests %>% filter(c(DEFENDANT_PSA!= 0 | DEFEN
 # 4. Qual a idade média de pessoas envolvidas com crimes de tráfego de maconha?
 # 5...
 
-
+#estive aqui
 
 
 
