@@ -6,6 +6,7 @@ library(dplyr)
 
 # importação do conjunto de dados Marijuana_Arrests
 Marijuana_Arrests <- read_csv("C:/Users/paes2/Desktop/disciplinas/Linguagem R/trabalho/TrabalhoR_Marijuana_Arrests/Marijuana_Arrests.csv")
+#obs.: quando for abrir o arquivo colocar o diretório específico do arquivo .csv
 View(Marijuana_Arrests)
 #  url<- "https://github.com/paes023bio/TrabalhoR_Marijuana_Arrests2/blob/33c8c1db26b6b074fea8ebc4ec959a2f118bfcb7/Marijuana_Arrests.csv"
 # db_Marijuana_Arrests<- read_csv(url)
@@ -44,10 +45,11 @@ Marijuana_Arrests%>% select(TYPE) %>% head(1000) %>% View()
 
 #limpeaza dos dados
 #sugestões: retirar linhas com NA; e colunas que não iram ser usadas, como GIS_ID, EDITOR, OBJECTID...
-
+Marijuana_Arrests_new<- Marijuana_Arrests %>% filter(c(DEFENDANT_PSA!= 0 | DEFENDANT_DISTRICT!=0)) %>% select(c(-CCN, -OFFENSE_BLOCKX, -OFFENSE_BLOCKY,-GIS_ID, -CREATED, -ARREST_BLOCKX, -ARREST_BLOCKY)) 
 
 # Perguntas de interesse:
 # 1. Qual é o principal tipo de delito (coluna Type) relacionado com o maior número de apreensões? Onde (coluna address) ocorre as principais apreensões desse tipo de delito?
+
 # 2. Quantas apreensões foram registradas por consumo próprio? Desse número, quais são as porcentagens entre jovens e adultos?
 # 3. A maior parte dos delitos ocorreram em qual período do dia (manhã, tarde, noite)? 
 # 4. Qual a idade média de pessoas envolvidas com crimes de tráfego de maconha?
