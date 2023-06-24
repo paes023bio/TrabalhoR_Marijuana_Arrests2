@@ -39,9 +39,9 @@ OFFENSE_DISTRICT:	Bairro onde ocorreu o crime	Texto
 OFFENSE_PSA:	A Área de Serviço Policial (PSA) associada ao crime	Texto
 OFFENSE_BLOCKX:	Coordenada X da localização aproximada do bloco da ofensa	Numérico
 OFFENSE_BLOCKY:	Coordenada Y da localização aproximada do bloco da ofensa	Numérico
-DEFENDANT_PSA:	O PSA associado ao réu	Texto
+DEFENDANT_PSA:	O PSA associado ao réu	numérico
 DEFENDANT_DISTRICT:	O distrito associado ao réu	Texto
-CORRIDA:	A raça do réu, com base na observação oficial	Texto
+RACE:	A raça do réu, com base na observação oficial	Texto
 ETNIA:	A etnia do réu, com base na observação oficial	Texto
 SEXO:	O gênero do réu	Texto
 CATEGORIA:	A categoria do delito (por exemplo, posse, distribuição, consumo público)	Texto
@@ -51,7 +51,7 @@ ARREST_BLOCKX:	Coordenada X da localização aproximada do bloco da prisão	Num�
 ARREST_BLOCKY:	Coordenada Y da localização aproximada do bloco da prisão	Numérico
 GIS_ID	ID: do Sistema de Informações Geográficas (GIS) associado ao registro	Texto
 O CRIADOR:	O criador do registro	Texto
-CRIADA:	A data e a hora em que o registro foi criado	Texto
+CREATED:	A data e a hora em que o registro foi criado	Texto
 EDITOR:	O editor do disco	Texto
 EDITADO:	A data e a hora em que o registro foi editado pela última vez	Texto
 OBJECTID:	Identificador único para cada registro	Numérico
@@ -98,11 +98,10 @@ Devido isso a coluna foi transformada em título (Palavras começando com maiús
 #################### Perguntas de interesse #####################################
 
 # 1. Qual é o principal tipo de delito (coluna Type) relacionado com o maior número de apreensões? Onde (coluna address) ocorre as principais apreensões desse tipo de delito? 
+M%>% group_by(TYPE) %>% summarise()
 
-M %>% 
-    group_by(TYPE) %>% 
-    # filter(TYPE == "Public Consumption") %>% 
-    summarise(n = n())
+
+
 
 # 2. Qual o distrito que ocorre mais apreensões (coluna OFFENSE_DISTRICT)? qual o distrito com o maior número de detentos(coluna DEFENDANT_DISTRICT)?
 # 3. Quantas apreensões foram registradas por consumo próprio? Desse número, quais são as porcentagens entre jovens e adultos? 
@@ -111,8 +110,6 @@ M %>%
 # 6. Qual a idade média de pessoas envolvidas com crimes de tráfego de maconha?
 # 7...
 
-#estive aqui
-#estive aqui 2
 
 
 
