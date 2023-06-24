@@ -96,6 +96,8 @@ print(head(M, 100), n=100)
 # 6. Qual a idade média de pessoas envolvidas com crimes de tráfego de maconha?
 # 7...
 
+#estive aqui
+#estive aqui 2
 
 
 
