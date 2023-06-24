@@ -85,19 +85,22 @@ M <- M %>% separate(DIAHORA, into = c("DIA", "HORA"), sep=" ")
 print(head(M, 100), n=100)
 
 
-# Colocando cada palavra da coluna TYPE como título
+# Colocando as entradas da coluna TYPE como título
 head(M$TYPE)
 M <- M %>% mutate(TYPE = str_to_title(M$TYPE))
 print(head(M, 100), n=25)
 '''
 Em TYPE aparecem "Public consumption" (c minúsculo)  e "Public Consumption" (C maiúsculo). 
-
 Devido isso a coluna foi transformada em título (Palavras começando com maiúsculo) 
 '''
+
+M
+# M é a base de dados tratada pronta para o início das análises 
 
 
 #################### Perguntas de interesse #####################################
 
+#################################################################################
 # 1. Qual é o principal tipo de delito (coluna Type) relacionado com o maior número de apreensões? Onde (coluna address) ocorre as principais apreensões desse tipo de delito? 
 '''
 sugestão: em vez de usar a coluna ADDRESS usar offense_district. 
@@ -113,8 +116,22 @@ M %>%
     summarise("Numero_De_Delitos" = n())
 
 
+####################################################################################
 # 2. Qual o distrito que ocorre mais apreensões (coluna OFFENSE_DISTRICT)? qual o distrito com o maior número de detentos(coluna DEFENDANT_DISTRICT)?
+
+
+
+####################################################################################
 # 3. Quantas apreensões foram registradas por consumo próprio? Desse número, quais são as porcentagens entre jovens e adultos? 
+M %>% 
+    group_by(TYPE) %>% 
+    summarise("Numero_De_Delitos" = n())
+# Como não existe exatamente um tipo "consumo próprio" foi considerado que porte (possession) sem intenção de distribuição é posse de consumo próprio
+
+
+
+
+#####################################################################################
 # 4. A maior parte dos delitos ocorreram em qual período do dia (manhã, tarde, noite)? 
 # 5. Qual mês do ano ocorre mais delitos? 
 # 6. Qual a idade média de pessoas envolvidas com crimes de tráfego de maconha?
