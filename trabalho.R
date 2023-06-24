@@ -60,13 +60,13 @@ GLOBALID:	Identificador exclusivo global para cada registro	Texto
 
 # Selecionando colunas de interesse
 variaveis <- c("TYPE", "ADULT_JUVENILE", "DATETIME", "AGE", "RACE", "ETHNICITY", "SEX", "ADDRESS", "DEFENDANT_DISTRICT", "OFFENSE_DISTRICT")
-M_interesse <- Raw_Data %>% select(variaveis)
-# M_interesse são os dados com todas as colunas de interesse
+Interest_Data <- Raw_Data %>% select(variaveis)
+# Interest_Data são os dados com todas as colunas de interesse
 # Foram selecionadas as variáveis que parecem relevantes para as análises propostas
 
 
 # Removendo linhas com informações nulas 
-M <- filter(M_interesse, TYPE!=0 & ADULT_JUVENILE!=0 & DATETIME!=0 & AGE!=0 
+M <- filter(Interest_Data, TYPE!=0 & ADULT_JUVENILE!=0 & DATETIME!=0 & AGE!=0 
     & RACE!=0 & ETHNICITY!=0 & SEX!=0 & ADDRESS!=0 & DEFENDANT_DISTRICT!=0 
     & OFFENSE_DISTRICT!=0)
 print(head(M, 50), n=50)
@@ -89,7 +89,6 @@ print(head(M, 100), n=100)
 #################### Perguntas de interesse #####################################
 
 # 1. Qual é o principal tipo de delito (coluna Type) relacionado com o maior número de apreensões? Onde (coluna address) ocorre as principais apreensões desse tipo de delito? 
-M_tratado
 # 2. Qual o distrito que ocorre mais apreensões (coluna OFFENSE_DISTRICT)? qual o distrito com o maior número de detentos(coluna DEFENDANT_DISTRICT)?
 # 3. Quantas apreensões foram registradas por consumo próprio? Desse número, quais são as porcentagens entre jovens e adultos? 
 # 4. A maior parte dos delitos ocorreram em qual período do dia (manhã, tarde, noite)? 
