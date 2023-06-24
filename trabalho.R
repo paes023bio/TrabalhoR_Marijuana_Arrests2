@@ -88,7 +88,7 @@ print(head(M, 100), n=100)
 # Colocando cada palavra da coluna TYPE como título
 head(M$TYPE)
 M <- M %>% mutate(TYPE = str_to_title(M$TYPE))
-print(head(M, 100), n=100)
+print(head(M, 100), n=25)
 '''
 Em TYPE aparecem "Public consumption" (c minúsculo)  e "Public Consumption" (C maiúsculo). 
 Devido isso a coluna foi transformada em título (Palavras começando com maiúsculo) 
@@ -98,8 +98,7 @@ Devido isso a coluna foi transformada em título (Palavras começando com maiús
 #################### Perguntas de interesse #####################################
 
 # 1. Qual é o principal tipo de delito (coluna Type) relacionado com o maior número de apreensões? Onde (coluna address) ocorre as principais apreensões desse tipo de delito? 
-M%>% group_by(TYPE) %>% summarise()
-
+M %>% group_by(TYPE) %>% summarise(n())
 
 
 
