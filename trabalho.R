@@ -91,6 +91,7 @@ M <- M %>% mutate(TYPE = str_to_title(M$TYPE))
 print(head(M, 100), n=25)
 '''
 Em TYPE aparecem "Public consumption" (c minúsculo)  e "Public Consumption" (C maiúsculo). 
+
 Devido isso a coluna foi transformada em título (Palavras começando com maiúsculo) 
 '''
 
@@ -98,8 +99,18 @@ Devido isso a coluna foi transformada em título (Palavras começando com maiús
 #################### Perguntas de interesse #####################################
 
 # 1. Qual é o principal tipo de delito (coluna Type) relacionado com o maior número de apreensões? Onde (coluna address) ocorre as principais apreensões desse tipo de delito? 
-M %>% group_by(TYPE) %>% summarise(n())
-
+'''
+sugestão: em vez de usar a coluna ADDRESS usar offense_district. 
+A coluna address tem mais de 4 mil endereços diferentes com uma ou duas ocorrências 
+Usando as colunas offense_district temos os distritos onde ocorrem mais apreensões e com
+defendant_district de qual distrito vem o maior número de pessoas detidas
+'''
+M %>% 
+    group_by(TYPE) %>% 
+    summarise("Numero_De_Delitos" = n())
+M %>% 
+    group_by(ADDRESS) %>% 
+    summarise("Numero_De_Delitos" = n())
 
 
 # 2. Qual o distrito que ocorre mais apreensões (coluna OFFENSE_DISTRICT)? qual o distrito com o maior número de detentos(coluna DEFENDANT_DISTRICT)?
