@@ -13,6 +13,7 @@ View(Marijuana_Arrests)
 
 Marijuana_Arrests%>% select(TYPE) %>% head(1000) %>% View()
 
+
 #descrição das variáveis
 # TIPO: Indica o tipo de prisão	Texto
 # ADULT_JUVENILE: Especifica se o detido é um adulto ou um menor	Texto
