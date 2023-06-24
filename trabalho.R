@@ -4,7 +4,7 @@
 library(readr)
 library(dplyr)
 library(tidyverse)
-
+library(stringr)
 
 
 #################### Importação do conjunto de dados #######################
@@ -85,10 +85,25 @@ M <- M %>% separate(DIAHORA, into = c("DIA", "HORA"), sep=" ")
 print(head(M, 100), n=100)
 
 
+# Colocando cada palavra da coluna TYPE como título
+head(M$TYPE)
+M <- M %>% mutate(TYPE = str_to_title(M$TYPE))
+print(head(M, 100), n=100)
+'''
+Em TYPE aparecem "Public consumption" (c minúsculo)  e "Public Consumption" (C maiúsculo). 
+Devido isso a coluna foi transformada em título (Palavras começando com maiúsculo) 
+'''
+
 
 #################### Perguntas de interesse #####################################
 
 # 1. Qual é o principal tipo de delito (coluna Type) relacionado com o maior número de apreensões? Onde (coluna address) ocorre as principais apreensões desse tipo de delito? 
+
+M %>% 
+    group_by(TYPE) %>% 
+    # filter(TYPE == "Public Consumption") %>% 
+    summarise(n = n())
+
 # 2. Qual o distrito que ocorre mais apreensões (coluna OFFENSE_DISTRICT)? qual o distrito com o maior número de detentos(coluna DEFENDANT_DISTRICT)?
 # 3. Quantas apreensões foram registradas por consumo próprio? Desse número, quais são as porcentagens entre jovens e adultos? 
 # 4. A maior parte dos delitos ocorreram em qual período do dia (manhã, tarde, noite)? 
