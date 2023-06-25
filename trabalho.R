@@ -6,6 +6,7 @@ library(dplyr)
 library(tidyverse)
 library(stringr)
 library(ggthemes) # pacote de temas para os gráficos ggplot2
+library(tibble)
 
 
 #################### Importação do conjunto de dados #######################
@@ -123,14 +124,17 @@ local_apreensoes_posse<- M %>% group_by(OFFENSE_DISTRICT,TYPE) %>%
 local_apreensoes_posse<- local_apreensoes_posse %>% select(OFFENSE_DISTRICT, Numero_De_apreensões)%>% arrange(Numero_De_apreensões)
 paste0("O distrito em que ocorre o maior número de apreensões por posse é: ", local_apreensoes_posse$OFFENSE_DISTRICT[8], ", com: ", local_apreensoes_posse$Numero_De_apreensões[8])
 
-#c) Gráfico dos crimes de posse e posse com intenção de distribuição (tráfico de maconha) por distritos:
+#c) Gráfico dos crimes de posse e posse com intenção de distribuição (tráfico de maconha) por distritos dentro do estado:
 dist_posse_traf<- M %>% group_by(OFFENSE_DISTRICT,TYPE) %>% 
   summarise("Numero_De_apreensões" = n()) %>%
   filter(str_detect(TYPE,pattern = "Possession"))
-gf_Posse_traf_dist<- dist_posse_traf %>% ggplot(aes(x=OFFENSE_DISTRICT, y=Numero_De_apreensões, color=TYPE)) + geom_point()+
-  labs(title = "Gráfico de Posse e Tráfico de Maconha por Distritos", x="Distritos", y="Número de Apreensões", color="Tipo de Delito")+
-  theme_solarized_2()
-gf_Posse_traf_dist 
+dist_posse_traf<- rename(dist_posse_traf, c(Distritos= OFFENSE_DISTRICT, Tipo_de_Delito=TYPE))#alterando o nome de algumas colunas para o português
+dist_posse_traf<- dist_posse_traf%>% filter(str_detect(Distritos,pattern = ".D$"))#tirando os delitos comentidos fora do Estado
+gf_Posse_traf_dist<- dist_posse_traf %>% ggplot(aes(x=Distritos, y=Numero_De_apreensões, color=Tipo_de_Delito)) + geom_point()+
+  labs(title = "Posse e Tráfico de Maconha por Distritos Dentro do Estado", x="Distritos", y="Número de Apreensões", color="Tipo de Delito")+
+  scale_alpha_discrete(name="tipo de delito", labels=c("Posse","Tráfico"))+
+  theme(plot.title = element_text(size = 9,hjust=0.5), panel.background = element_rect(fill = "grey98"))
+gf_Posse_traf_dist #problema em utilizar a funçao scale_alpha_discrete para alterar as labels da legenda para o português
 #vou mexer mais no gráfico depois
 ####################################################################################
 # 2. Qual o distrito que ocorre mais apreensões (coluna OFFENSE_DISTRICT)? qual o distrito com o maior número de detentos(coluna DEFENDANT_DISTRICT)?
