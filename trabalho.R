@@ -144,15 +144,52 @@ gf_Posse_traf_dist #problema em utilizar a funçao scale_alpha_discrete para alt
 
 ####################################################################################
 # 3. Quantas apreensões foram registradas por consumo próprio? Desse número, quais são as porcentagens entre jovens e adultos? 
-M %>% 
-  group_by(TYPE) %>% 
-  summarise("Numero_De_Delitos" = n())
+
 # Como não existe exatamente um tipo "consumo próprio" foi considerado que porte (possession) sem intenção de distribuição é posse de consumo próprio
 
 # Porcentagem entre jovens e adultos detidos por consumo próprio  
-Interest_Data %>% 
-    group_by(ADULT_JUVENILE) %>%
-    summarise("Numero" = n(), )
+
+# Juntando as colunas por tipo e somando o número total de cada tipo de delito 
+Interest_Data <- Interest_Data %>% mutate(TYPE = str_to_title(Interest_Data$TYPE))
+adult_juvenile_rate <- Interest_Data %>% 
+    group_by(TYPE) %>% 
+    summarise("Numero_De_Delitos" = n())
+adult_juvenile_rate 
+
+# Adicionando a coluna com número de detidos maiores de idade por tipo de crime 
+num_maiores <- Interest_Data %>% 
+    group_by(TYPE) %>% 
+    filter(ADULT_JUVENILE == "Adult") %>%
+    summarise("Maiores_De_Idade" = n()) %>%
+    select("Maiores_De_Idade")
+adult_juvenile_rate <- adult_juvenile_rate %>% mutate(num_maiores)
+
+# Adicionando a coluna com número de detidos menores de idade por tipo de crime 
+num_menores <- Interest_Data %>% 
+    group_by(TYPE) %>% 
+    filter(ADULT_JUVENILE == "Juvenile") %>%
+    summarise("Menores_De_Idade" = n()) %>%
+    select("Menores_De_Idade") 
+num_menores <- num_menores %>% add_row("Menores_De_Idade" = 0, .before = 1) 
+num_menores <- num_menores %>% add_row("Menores_De_Idade" = 0, .before = 3) 
+adult_juvenile_rate <- adult_juvenile_rate %>% mutate(num_menores)
+
+
+# Adicionando a coluna com número de detidos com idade desconhecida por tipo de crime 
+idade_des <- Interest_Data %>% 
+    group_by(TYPE) %>% 
+    filter(ADULT_JUVENILE == "Unknown") %>%
+    summarise("Idade_Desconhecida" = n()) %>%
+    select("Idade_Desconhecida")
+idade_des  <- idade_des   %>% add_row("Idade_Desconhecida" = 0, .before = 1) 
+idade_des  <- idade_des   %>% add_row("Idade_Desconhecida" = 0, .before = 3) 
+adult_juvenile_rate <- adult_juvenile_rate %>% mutate(idade_des)
+
+# Tabela Pronta
+adult_juvenile_rate 
+
+# Gráficos
+
 
 
 
