@@ -5,6 +5,7 @@ library(readr)
 library(dplyr)
 library(tidyverse)
 library(stringr)
+library(ggthemes) # pacote de temas para os gráficos ggplot2
 
 
 #################### Importação do conjunto de dados #######################
@@ -67,8 +68,8 @@ Interest_Data <- Raw_Data %>% select(variaveis)
 
 # Removendo linhas com informações nulas 
 M <- filter(Interest_Data, TYPE!=0 & ADULT_JUVENILE!=0 & DATETIME!=0 & AGE!=0 
-    & RACE!=0 & ETHNICITY!=0 & SEX!=0 & ADDRESS!=0 & DEFENDANT_DISTRICT!=0 
-    & OFFENSE_DISTRICT!=0)
+            & RACE!=0 & ETHNICITY!=0 & SEX!=0 & ADDRESS!=0 & DEFENDANT_DISTRICT!=0 
+            & OFFENSE_DISTRICT!=0)
 print(head(M, 50), n=50)
 '''
 A informação de que o detido é maior ou menor de idade é relevante, mas a descrição 
@@ -101,21 +102,36 @@ M
 #################### Perguntas de interesse #####################################
 
 #################################################################################
-# 1. Qual é o principal tipo de delito (coluna Type) relacionado com o maior número de apreensões? Onde (coluna address) ocorre as principais apreensões desse tipo de delito? 
+# 1. Análise das colunas TYPE e OFFENSE_DISTRICT:
+#a) Qual é o principal tipo de delito relacionado com o maior número de apreensões?
+tipo_delito<- M %>% 
+  group_by(TYPE) %>% 
+  summarise("Numero_De_Delitos" = n())
+tipo_delito %>%select(Numero_De_Delitos) %>% max()
+paste0("O maior tipo de delito de apreensão é posse de maconha, com:  ", tipo_delito$Numero_De_Delitos[4])
+
+#b) Qual o distrito que ocorre as principais apreensões desse tipo de delito? 
 '''
 sugestão: em vez de usar a coluna ADDRESS usar offense_district. 
 A coluna address tem mais de 4 mil endereços diferentes com uma ou duas ocorrências 
 Usando as colunas offense_district temos os distritos onde ocorrem mais apreensões e com
 defendant_district de qual distrito vem o maior número de pessoas detidas
 '''
-M %>% 
-    group_by(TYPE) %>% 
-    summarise("Numero_De_Delitos" = n())
-M %>% 
-    group_by(ADDRESS) %>% 
-    summarise("Numero_De_Delitos" = n())
+local_apreensoes_posse<- M %>% group_by(OFFENSE_DISTRICT,TYPE) %>% 
+  summarise("Numero_De_apreensões" = n()) %>%
+  filter(str_detect(TYPE,pattern = "Possession$"))
+local_apreensoes_posse<- local_apreensoes_posse %>% select(OFFENSE_DISTRICT, Numero_De_apreensões)%>% arrange(Numero_De_apreensões)
+paste0("O distrito em que ocorre o maior número de apreensões por posse é: ", local_apreensoes_posse$OFFENSE_DISTRICT[8], ", com: ", local_apreensoes_posse$Numero_De_apreensões[8])
 
-
+#c) Gráfico dos crimes de posse e posse com intenção de distribuição (tráfico de maconha) por distritos:
+dist_posse_traf<- M %>% group_by(OFFENSE_DISTRICT,TYPE) %>% 
+  summarise("Numero_De_apreensões" = n()) %>%
+  filter(str_detect(TYPE,pattern = "Possession"))
+gf_Posse_traf_dist<- dist_posse_traf %>% ggplot(aes(x=OFFENSE_DISTRICT, y=Numero_De_apreensões, color=TYPE)) + geom_point()+
+  labs(title = "Gráfico de Posse e Tráfico de Maconha por Distritos", x="Distritos", y="Número de Apreensões", color="Tipo de Delito")+
+  theme_solarized_2()
+gf_Posse_traf_dist 
+#vou mexer mais no gráfico depois
 ####################################################################################
 # 2. Qual o distrito que ocorre mais apreensões (coluna OFFENSE_DISTRICT)? qual o distrito com o maior número de detentos(coluna DEFENDANT_DISTRICT)?
 
@@ -124,8 +140,8 @@ M %>%
 ####################################################################################
 # 3. Quantas apreensões foram registradas por consumo próprio? Desse número, quais são as porcentagens entre jovens e adultos? 
 M %>% 
-    group_by(TYPE) %>% 
-    summarise("Numero_De_Delitos" = n())
+  group_by(TYPE) %>% 
+  summarise("Numero_De_Delitos" = n())
 # Como não existe exatamente um tipo "consumo próprio" foi considerado que porte (possession) sem intenção de distribuição é posse de consumo próprio
 
 
