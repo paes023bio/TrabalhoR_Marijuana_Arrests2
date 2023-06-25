@@ -5,6 +5,7 @@ library(readr)
 library(dplyr)
 library(tidyverse)
 library(stringr)
+library(ggplot2)
 library(ggthemes) # pacote de temas para os gráficos ggplot2
 
 
