@@ -189,6 +189,16 @@ adult_juvenile_rate <- adult_juvenile_rate %>% mutate(idade_des)
 adult_juvenile_rate 
 
 # Gráficos
+names <- adult_juvenile_rate %>% names() 
+values <- adult_juvenile_rate %>% slice(1) %>% unname() %>% unlist() %>% as.integer()
+dados <- data.frame(Faixa_Etaria = names[-c(1,2)],
+            valores = values[-c(1,2)])
+# Criar o gráfico de pizza
+ggplot(dados, aes(x = "", y = valores, fill = Faixa_Etaria)) +
+    geom_bar(stat = "identity", width = 1) +
+    coord_polar(theta = "y") +
+    labs(fill = "Categoria") +
+    theme_minimal()
 
 
 
@@ -198,6 +208,9 @@ adult_juvenile_rate
 # 5. Qual mês do ano ocorre mais delitos? 
 # 6. Qual a idade média de pessoas envolvidas com crimes de tráfego de maconha?
 # 7...
+
+
+
 
 
 
