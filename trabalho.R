@@ -128,6 +128,10 @@ M %>%
     summarise("Numero_De_Delitos" = n())
 # Como não existe exatamente um tipo "consumo próprio" foi considerado que porte (possession) sem intenção de distribuição é posse de consumo próprio
 
+# Porcentagem entre jovens e adultos detidos por consumo próprio  
+Interest_Data %>% 
+    group_by(ADULT_JUVENILE) %>%
+    summarise("Numero" = n(), )
 
 
 
