@@ -142,9 +142,16 @@ gf_Posse_traf_dist+ scale_fill_manual(name="Tipo", values=c("red", "blue"),
 #scale_alpha_discrete(name="tipo de delito", labels=c("Posse","Tráfico")) #problema em utilizar a funçao scale_alpha_discrete para alterar as labels da legenda para o português
 #vou mexer mais no gráfico depois
 ####################################################################################
-# 2. Qual o distrito que ocorre mais apreensões (coluna OFFENSE_DISTRICT)? qual o distrito com o maior número de detentos(coluna DEFENDANT_DISTRICT)?
+# 2.
+# a)Qual o distrito que ocorre mais apreensões (coluna OFFENSE_DISTRICT)? 
+n_apDist<-M %>% group_by(OFFENSE_DISTRICT) %>% 
+  summarise("Numero_De_apreensões" = n())%>% arrange()
+paste0("7D: ", max(n_apDist$Numero_De_apreensões))
 
-
+# b)Qual o distrito com o maior número de detentos(coluna DEFENDANT_DISTRICT)?
+n_dtDist<- M %>% group_by(DEFENDANT_DISTRICT) %>% 
+  summarise("Numero_De_Detentos" = n())
+paste0("7D: ", max(max(n_dtDist$Numero_De_Detentos)), " detentos")
 
 ####################################################################################
 # 3. Quantas apreensões foram registradas por consumo próprio? Desse número, quais são as porcentagens entre jovens e adultos? 
