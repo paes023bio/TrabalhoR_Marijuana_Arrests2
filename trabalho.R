@@ -131,11 +131,15 @@ dist_posse_traf<- M %>% group_by(OFFENSE_DISTRICT,TYPE) %>%
   filter(str_detect(TYPE,pattern = "Possession"))
 dist_posse_traf<- rename(dist_posse_traf, c(Distritos= OFFENSE_DISTRICT, Tipo_de_Delito=TYPE))#alterando o nome de algumas colunas para o português
 dist_posse_traf<- dist_posse_traf%>% filter(str_detect(Distritos,pattern = ".D$"))#tirando os delitos comentidos fora do Estado
-gf_Posse_traf_dist<- dist_posse_traf %>% ggplot(aes(x=Distritos, y=Numero_De_apreensões, color=Tipo_de_Delito)) + geom_point()+
-  labs(title = "Posse e Tráfico de Maconha por Distritos Dentro do Estado", x="Distritos", y="Número de Apreensões", color="Tipo de Delito")+
-  scale_alpha_discrete(name="tipo de delito", labels=c("Posse","Tráfico"))+
-  theme(plot.title = element_text(size = 9,hjust=0.5), panel.background = element_rect(fill = "grey98"))
-gf_Posse_traf_dist #problema em utilizar a funçao scale_alpha_discrete para alterar as labels da legenda para o português
+gf_Posse_traf_dist<- dist_posse_traf %>% ggplot(aes(x=Distritos, y=Numero_De_apreensões, color=Tipo_de_Delito)) + geom_point(size=4, shape=120)+
+  labs(title = "Posse e Tráfico de Maconha por Distritos Dentro do Estado",
+       x="Distritos", y="Número de Apreensões", color="Tipo")
+gf_Posse_traf_dist+ scale_fill_manual(name="Tipo", values=c("red", "blue"),
+                                      labels=c("Posse", "Tráfico"))+ theme(plot.title = element_text(size = 12,hjust=0.5),
+                                                                           panel.background = element_rect(fill = "grey98"),legend.position = "bottom")
+
+
+#scale_alpha_discrete(name="tipo de delito", labels=c("Posse","Tráfico")) #problema em utilizar a funçao scale_alpha_discrete para alterar as labels da legenda para o português
 #vou mexer mais no gráfico depois
 ####################################################################################
 # 2. Qual o distrito que ocorre mais apreensões (coluna OFFENSE_DISTRICT)? qual o distrito com o maior número de detentos(coluna DEFENDANT_DISTRICT)?
@@ -152,24 +156,24 @@ gf_Posse_traf_dist #problema em utilizar a funçao scale_alpha_discrete para alt
 # Juntando as colunas por tipo e somando o número total de cada tipo de delito 
 Interest_Data <- Interest_Data %>% mutate(TYPE = str_to_title(Interest_Data$TYPE))
 adult_juvenile_rate <- Interest_Data %>% 
-    group_by(TYPE) %>% 
-    summarise("Numero_De_Delitos" = n())
+  group_by(TYPE) %>% 
+  summarise("Numero_De_Delitos" = n())
 adult_juvenile_rate 
 
 # Adicionando a coluna com número de detidos maiores de idade por tipo de crime 
 num_maiores <- Interest_Data %>% 
-    group_by(TYPE) %>% 
-    filter(ADULT_JUVENILE == "Adult") %>%
-    summarise("Maiores_De_Idade" = n()) %>%
-    select("Maiores_De_Idade")
+  group_by(TYPE) %>% 
+  filter(ADULT_JUVENILE == "Adult") %>%
+  summarise("Maiores_De_Idade" = n()) %>%
+  select("Maiores_De_Idade")
 adult_juvenile_rate <- adult_juvenile_rate %>% mutate(num_maiores)
 
 # Adicionando a coluna com número de detidos menores de idade por tipo de crime 
 num_menores <- Interest_Data %>% 
-    group_by(TYPE) %>% 
-    filter(ADULT_JUVENILE == "Juvenile") %>%
-    summarise("Menores_De_Idade" = n()) %>%
-    select("Menores_De_Idade") 
+  group_by(TYPE) %>% 
+  filter(ADULT_JUVENILE == "Juvenile") %>%
+  summarise("Menores_De_Idade" = n()) %>%
+  select("Menores_De_Idade") 
 num_menores <- num_menores %>% add_row("Menores_De_Idade" = 0, .before = 1) 
 num_menores <- num_menores %>% add_row("Menores_De_Idade" = 0, .before = 3) 
 adult_juvenile_rate <- adult_juvenile_rate %>% mutate(num_menores)
@@ -177,10 +181,10 @@ adult_juvenile_rate <- adult_juvenile_rate %>% mutate(num_menores)
 
 # Adicionando a coluna com número de detidos com idade desconhecida por tipo de crime 
 idade_des <- Interest_Data %>% 
-    group_by(TYPE) %>% 
-    filter(ADULT_JUVENILE == "Unknown") %>%
-    summarise("Idade_Desconhecida" = n()) %>%
-    select("Idade_Desconhecida")
+  group_by(TYPE) %>% 
+  filter(ADULT_JUVENILE == "Unknown") %>%
+  summarise("Idade_Desconhecida" = n()) %>%
+  select("Idade_Desconhecida")
 idade_des  <- idade_des   %>% add_row("Idade_Desconhecida" = 0, .before = 1) 
 idade_des  <- idade_des   %>% add_row("Idade_Desconhecida" = 0, .before = 3) 
 adult_juvenile_rate <- adult_juvenile_rate %>% mutate(idade_des)
@@ -192,13 +196,13 @@ adult_juvenile_rate
 names <- adult_juvenile_rate %>% names() 
 values <- adult_juvenile_rate %>% slice(1) %>% unname() %>% unlist() %>% as.integer()
 dados <- data.frame(Faixa_Etaria = names[-c(1,2)],
-            valores = values[-c(1,2)])
+                    valores = values[-c(1,2)])
 # Criar o gráfico de pizza
 ggplot(dados, aes(x = "", y = valores, fill = Faixa_Etaria)) +
-    geom_bar(stat = "identity", width = 1) +
-    coord_polar(theta = "y") +
-    labs(fill = "Categoria") +
-    theme_minimal()
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(fill = "Categoria") +
+  theme_minimal()
 
 
 
