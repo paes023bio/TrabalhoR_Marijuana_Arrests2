@@ -137,6 +137,10 @@ gf_Posse_traf_dist<- dist_posse_traf %>% ggplot(aes(x=Distritos, y=Numero_De_apr
   theme(plot.title = element_text(size = 9,hjust=0.5), panel.background = element_rect(fill = "grey98"))
 gf_Posse_traf_dist #problema em utilizar a funçao scale_alpha_discrete para alterar as labels da legenda para o português
 #vou mexer mais no gráfico depois
+
+
+
+
 ####################################################################################
 # 2. Qual o distrito que ocorre mais apreensões (coluna OFFENSE_DISTRICT)? qual o distrito com o maior número de detentos(coluna DEFENDANT_DISTRICT)?
 
@@ -199,6 +203,7 @@ ggplot(dados, aes(x = "", y = valores, fill = Faixa_Etaria)) +
     coord_polar(theta = "y") +
     labs(fill = "Categoria") +
     theme_minimal()
+    
 
 
 
