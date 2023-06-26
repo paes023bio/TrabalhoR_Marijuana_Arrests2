@@ -8,7 +8,7 @@ library(stringr)
 library(ggplot2)
 library(ggthemes) # pacote de temas para os gráficos ggplot2
 library(tibble)
-
+library(gridExtra)
 
 #################### Importação do conjunto de dados #######################
 
@@ -157,13 +157,21 @@ n_dtDist<- M %>% group_by(DEFENDANT_DISTRICT) %>%
   summarise("Numero_De_Detentos" = n())
 paste0("7D: ", max(max(n_dtDist$Numero_De_Detentos)), " detentos")
 
+
+
+
+
+
+
+
+
+
 ####################################################################################
 # 3. Quantas apreensões foram registradas por consumo próprio? Desse número, quais são as porcentagens entre jovens e adultos? 
 
-# Como não existe exatamente um tipo "consumo próprio" foi considerado que porte (possession) sem intenção de distribuição é posse de consumo próprio
 
-# Porcentagem entre jovens e adultos detidos por consumo próprio  
 
+####### Tratamento de dados para pergunta 3
 # Juntando as colunas por tipo e somando o número total de cada tipo de delito 
 Interest_Data <- Interest_Data %>% mutate(TYPE = str_to_title(Interest_Data$TYPE))
 adult_juvenile_rate <- Interest_Data %>% 
@@ -203,17 +211,127 @@ adult_juvenile_rate <- adult_juvenile_rate %>% mutate(idade_des)
 # Tabela Pronta
 adult_juvenile_rate 
 
+###############  graficos de porcentagem adulto/juvenil para todos os tipos de crime 
 # Gráficos
 names <- adult_juvenile_rate %>% names() 
+
+# Cultivo  
 values <- adult_juvenile_rate %>% slice(1) %>% unname() %>% unlist() %>% as.integer()
-dados <- data.frame(Faixa_Etaria = names[-c(1,2)],
-                    valores = values[-c(1,2)])
-# Criar o gráfico de pizza
-ggplot(dados, aes(x = "", y = valores, fill = Faixa_Etaria)) +
+dados <- data.frame(Faixa_Etaria = names[-c(1,2,5)],
+                    valor = values[-c(1,2,5)])
+total <- sum(dados$valor)
+dados$percentual <- dados$valor / total * 100
+grafico31 <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria)) +
   geom_bar(stat = "identity", width = 1) +
   coord_polar(theta = "y") +
+  labs(title = "Cultivo") +
   labs(fill = "Categoria") +
+  geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
   theme_minimal()
+
+# Distribuição 
+values <- adult_juvenile_rate %>% slice(2) %>% unname() %>% unlist() %>% as.integer()
+dados <- data.frame(Faixa_Etaria = names[-c(1,2,5)],
+                    valor = values[-c(1,2,5)])
+total <- sum(dados$valor)
+dados$percentual <- dados$valor / total * 100
+grafico32 <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Distribuição") +
+  labs(fill = "Categoria") +
+  geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
+  theme_minimal()
+
+# Manufatura
+values <- adult_juvenile_rate %>% slice(3) %>% unname() %>% unlist() %>% as.integer()
+dados <- data.frame(Faixa_Etaria = names[-c(1,2,5)],
+                    valor = values[-c(1,2,5)])
+total <- sum(dados$valor)
+dados$percentual <- dados$valor / total * 100
+grafico33 <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Manufatura") +
+  labs(fill = "Categoria") +
+  geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
+  theme_minimal()
+
+# Posse
+values <- adult_juvenile_rate %>% slice(4) %>% unname() %>% unlist() %>% as.integer()
+dados <- data.frame(Faixa_Etaria = names[-c(1,2,5)],
+                    valor = values[-c(1,2,5)])
+total <- sum(dados$valor)
+dados$percentual <- dados$valor / total * 100
+grafico34 <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Posse") +
+  labs(fill = "Categoria") +
+  geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
+  theme_minimal()
+
+# Posse com intenção de distribuição
+values <- adult_juvenile_rate %>% slice(5) %>% unname() %>% unlist() %>% as.integer()
+dados <- data.frame(Faixa_Etaria = names[-c(1,2,5)],
+                    valor = values[-c(1,2,5)])
+total <- sum(dados$valor)
+dados$percentual <- dados$valor / total * 100
+grafico35 <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria), title = "Cultivo") +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Posse com intenção de distribuição") +
+  labs(fill = "Categoria") +
+  geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
+  theme_minimal()
+
+# Consumo Público 
+values <- adult_juvenile_rate %>% slice(6) %>% unname() %>% unlist() %>% as.integer()
+dados <- data.frame(Faixa_Etaria = names[-c(1,2,5)],
+                    valor = values[-c(1,2,5)])
+total <- sum(dados$valor)
+dados$percentual <- dados$valor / total * 100
+grafico36 <- grafico <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria), title = "Cultivo") +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Consumo Público") +
+  labs(fill = "Categoria") +
+  geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
+  theme_minimal()
+
+
+# imprime o grafico numa única imagem
+grid.arrange(grafico31, grafico32, grafico33, grafico34, grafico35, grafico36, ncol = 2)
+#essa função salva o grafico como png
+# ggsave(filename = "crimes_adulto_juvenil.png", plot = grid.arrange(grafico31, grafico32, grafico33, grafico34, grafico35, grafico36, ncol = 2), dpi = 300)
+
+
+
+##### Considerando consumo próprio as categorias "posse" (sem intenção de distribuição) e "consumo publico" como 
+# posse para consumo próprio temos
+values1 <- adult_juvenile_rate %>% slice(4) %>% unname() %>% unlist() %>% as.integer()
+values2 <- adult_juvenile_rate %>% slice(6) %>% unname() %>% unlist() %>% as.integer()
+values1
+
+# valor total de detidos por consumo próprio
+valor_total_por_consumo_proprio <- sum(values1[-c(1,2)]) + sum(values2[-c(1,2)])
+valor_total_por_consumo_proprio
+
+# porcentagem adulto/juvenil de detidos por consumo próprio
+dados <- data.frame(Faixa_Etaria = names[-c(1,2,5)],
+                    valor = values1[-c(1,2,5)] + values2[-c(1,2,5)])
+total <- sum(dados$valor)
+dados$percentual <- dados$valor / total * 100
+grafico37 <- grafico <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria), title = "Cultivo") +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Consumo Público") +
+  labs(fill = "Categoria") +
+  geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
+  theme_minimal()
+print(grafico37)
+
+
 
 
 
@@ -224,6 +342,7 @@ ggplot(dados, aes(x = "", y = valores, fill = Faixa_Etaria)) +
 # 5. Qual mês do ano ocorre mais delitos? 
 # 6. Qual a idade média de pessoas envolvidas com crimes de tráfego de maconha?
 # 7...
+
 
 
 
