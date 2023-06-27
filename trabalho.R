@@ -9,7 +9,7 @@ library(ggplot2)
 library(ggthemes) # pacote de temas para os gráficos ggplot2
 library(tibble)
 library(gridExtra)
-
+library(grid)
 #################### Importação do conjunto de dados #######################
 
 # Importando o banco de dados localmente (caso a url não funcione)
@@ -183,18 +183,18 @@ adult_juvenile_rate
 num_maiores <- Interest_Data %>% 
   group_by(TYPE) %>% 
   filter(ADULT_JUVENILE == "Adult") %>%
-  summarise("Maiores_De_Idade" = n()) %>%
-  select("Maiores_De_Idade")
+  summarise("Maiores De Idade" = n()) %>%
+  select("Maiores De Idade")
 adult_juvenile_rate <- adult_juvenile_rate %>% mutate(num_maiores)
 
 # Adicionando a coluna com número de detidos menores de idade por tipo de crime 
 num_menores <- Interest_Data %>% 
   group_by(TYPE) %>% 
   filter(ADULT_JUVENILE == "Juvenile") %>%
-  summarise("Menores_De_Idade" = n()) %>%
-  select("Menores_De_Idade") 
-num_menores <- num_menores %>% add_row("Menores_De_Idade" = 0, .before = 1) 
-num_menores <- num_menores %>% add_row("Menores_De_Idade" = 0, .before = 3) 
+  summarise("Menores De Idade" = n()) %>%
+  select("Menores De Idade") 
+num_menores <- num_menores %>% add_row("Menores De Idade" = 0, .before = 1) 
+num_menores <- num_menores %>% add_row("Menores De Idade" = 0, .before = 3) 
 adult_juvenile_rate <- adult_juvenile_rate %>% mutate(num_menores)
 
 
@@ -211,9 +211,12 @@ adult_juvenile_rate <- adult_juvenile_rate %>% mutate(idade_des)
 # Tabela Pronta
 adult_juvenile_rate 
 
+
+
 ###############  graficos de porcentagem adulto/juvenil para todos os tipos de crime 
 # Gráficos
 names <- adult_juvenile_rate %>% names() 
+
 
 # Cultivo  
 values <- adult_juvenile_rate %>% slice(1) %>% unname() %>% unlist() %>% as.integer()
@@ -227,7 +230,7 @@ grafico31 <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria)) +
   labs(title = "Cultivo") +
   labs(fill = "Categoria") +
   geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
-  theme_minimal()
+  theme_void()
 
 # Distribuição 
 values <- adult_juvenile_rate %>% slice(2) %>% unname() %>% unlist() %>% as.integer()
@@ -241,7 +244,7 @@ grafico32 <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria)) +
   labs(title = "Distribuição") +
   labs(fill = "Categoria") +
   geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
-  theme_minimal()
+  theme_void()
 
 # Manufatura
 values <- adult_juvenile_rate %>% slice(3) %>% unname() %>% unlist() %>% as.integer()
@@ -255,7 +258,7 @@ grafico33 <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria)) +
   labs(title = "Manufatura") +
   labs(fill = "Categoria") +
   geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
-  theme_minimal()
+  theme_void()
 
 # Posse
 values <- adult_juvenile_rate %>% slice(4) %>% unname() %>% unlist() %>% as.integer()
@@ -269,7 +272,7 @@ grafico34 <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria)) +
   labs(title = "Posse") +
   labs(fill = "Categoria") +
   geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
-  theme_minimal()
+  theme_void()
 
 # Posse com intenção de distribuição
 values <- adult_juvenile_rate %>% slice(5) %>% unname() %>% unlist() %>% as.integer()
@@ -283,7 +286,7 @@ grafico35 <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria), title = 
   labs(title = "Posse com intenção de distribuição") +
   labs(fill = "Categoria") +
   geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
-  theme_minimal()
+  theme_void()
 
 # Consumo Público 
 values <- adult_juvenile_rate %>% slice(6) %>% unname() %>% unlist() %>% as.integer()
@@ -297,13 +300,13 @@ grafico36 <- grafico <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria
   labs(title = "Consumo Público") +
   labs(fill = "Categoria") +
   geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
-  theme_minimal()
+  theme_void()
 
 
 # imprime o grafico numa única imagem
-grid.arrange(grafico31, grafico32, grafico33, grafico34, grafico35, grafico36, ncol = 2)
+
 #essa função salva o grafico como png
-# ggsave(filename = "crimes_adulto_juvenil.png", plot = grid.arrange(grafico31, grafico32, grafico33, grafico34, grafico35, grafico36, ncol = 2), dpi = 300)
+ggsave(filename = "crimes_adulto_juvenil.png", plot = grid.arrange(grafico31, grafico32, grafico33, grafico34, grafico35, grafico36, ncol = 3), dpi = 500)
 
 
 
@@ -322,15 +325,17 @@ dados <- data.frame(Faixa_Etaria = names[-c(1,2,5)],
                     valor = values1[-c(1,2,5)] + values2[-c(1,2,5)])
 total <- sum(dados$valor)
 dados$percentual <- dados$valor / total * 100
-grafico37 <- grafico <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria), title = "Cultivo") +
+grafico37 <- grafico <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria)) +
   geom_bar(stat = "identity", width = 1) +
   coord_polar(theta = "y") +
-  labs(title = "Consumo Público") +
+  labs(title = "Porcentagem Audulto/Jovem de Consumo Próprio") +
   labs(fill = "Categoria") +
   geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
-  theme_minimal()
+  theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5)) +
+  theme_void()
 print(grafico37)
 
+ggsave(filename = "crimes_adulto_juvenil_consumo.png", plot = grid.arrange(grafico37, ncol=1), dpi = 500)
 
 
 
@@ -340,8 +345,103 @@ print(grafico37)
 #####################################################################################
 # 4. A maior parte dos delitos ocorreram em qual período do dia (manhã, tarde, noite)? 
 # 5. Qual mês do ano ocorre mais delitos? 
+
+
+
+
+
+#####################################################################################################
 # 6. Qual a idade média de pessoas envolvidas com crimes de tráfego de maconha?
+apidade <- M %>% select(TYPE, AGE)
+apidade %>% group_by(TYPE) %>% summarise()
+
+max(apidade$AGE)
+min(apidade$AGE)
+mean(apidade$AGE)
+
+g61 <- apidade %>% 
+    ggplot(aes(x = AGE)) +
+    geom_histogram(binwidth=1,  
+                  color = 1, 
+                  fill = 4) +
+    labs(x = "Idade", y = "Número de detidos",
+    title = "Detidos envolvidos em qualquer tipo de crime") +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5))
+
+g62 <- filter(apidade, TYPE == "Cultivation") %>%
+ggplot(aes(x = AGE)) +
+    geom_histogram(binwidth=1,  
+                  color = 1, 
+                  fill = 4) +
+    labs(x = "Idade", y = "Número de detidos",
+    title = "Detidos por cultivo") +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5))
+
+g63 <- filter(apidade, TYPE == "Distribution") %>%
+ggplot(aes(x = AGE)) +
+    geom_histogram(binwidth=1,  
+                  color = 1, 
+                  fill = 4) +
+    labs(x = "Idade", y = "Número de detidos",
+    title = "Detidos por distribuição") +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5))
+
+g64 <- filter(apidade, TYPE == "Manufacture") %>%
+ggplot(aes(x = AGE)) +
+    geom_histogram(binwidth=1,  
+                  color = 1, 
+                  fill = 4) +
+    labs(x = "Idade", y = "Número de detidos",
+    title = "Detidos por manufatura") +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5))
+
+g65 <- filter(apidade, TYPE == "Possession") %>%
+ggplot(aes(x = AGE)) +
+    geom_histogram(binwidth=1,  
+                  color = 1, 
+                  fill = 4) +
+    labs(x = "Idade", y = "Número de detidos",
+    title = "Detidos por posse") +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5))
+
+g66 <- filter(apidade, TYPE == "Possession With Intent To Distribute") %>%
+ggplot(aes(x = AGE)) +
+    geom_histogram(binwidth=1,  
+                  color = 1, 
+                  fill = 4) +
+    labs(x = "Idade", y = "Número de detidos",
+    title = "Detidos por posse com intensão de distribuição") +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5))
+
+g67 <- filter(apidade, TYPE == "Public Consumption") %>%
+ggplot(aes(x = AGE)) +
+    geom_histogram(binwidth=1,  
+                  color = 1, 
+                  fill = 4) +
+    labs(x = "Idade", y = "Número de detidos",
+    title = "Detidos por uso em público") +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5)) +
+    guides(fill = guide_legend(title = "Média"))
+
+
+
+ggsave(filename = "distribuicao_idade_por_tipo.png", plot = grid.arrange(g62, g63, g64, g65, g66, g67, ncol = 3), dpi = 500)
+
+
+M %>% group_by(ANO) %>% summarise(n())
+
+
+
+
 # 7...
+
+
+
+
+
+
+
+
 
 
 
