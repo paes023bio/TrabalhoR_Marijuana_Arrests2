@@ -129,13 +129,16 @@ paste0("O distrito em que ocorre o maior número de apreensões por posse é: ",
 dist_posse_traf<- M %>% group_by(OFFENSE_DISTRICT,TYPE) %>% 
   summarise("Numero_De_apreensões" = n()) %>%
   filter(str_detect(TYPE,pattern = "Possession"))
+
 dist_posse_traf<- rename(dist_posse_traf, c(Distritos= OFFENSE_DISTRICT, Tipo_de_Delito=TYPE))#alterando o nome de algumas colunas para o português
+
 dist_posse_traf<- dist_posse_traf%>% filter(str_detect(Distritos,pattern = ".D$"))#tirando os delitos comentidos fora do Estado
+
 gf_Posse_traf_dist<- dist_posse_traf %>% ggplot(aes(x=Distritos, y=Numero_De_apreensões, color=Tipo_de_Delito)) + geom_point(size=4, shape=120)+
   labs(title = "Posse e Tráfico de Maconha por Distritos Dentro do Estado",
        x="Distritos", y="Número de Apreensões", color="Tipo")
 gf_Posse_traf_dist+ scale_fill_manual(name="Tipo", values=c("red", "blue"),
-                                      labels=c("Posse", "Tráfico"))+ theme(plot.title = element_text(size = 12,hjust=0.5),
+                                      label=c("Posse", "Tráfico"))+ theme(plot.title = element_text(size = 12,hjust=0.5),
                                                                            panel.background = element_rect(fill = "grey98"),legend.position = "bottom")
 
 
@@ -304,6 +307,7 @@ grafico36 <- grafico <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria
 
 
 # imprime o grafico numa única imagem
+grid.arrange(grafico31, grafico32, grafico33, grafico34, grafico35, grafico36, ncol = 3)
 
 #essa função salva o grafico como png
 ggsave(filename = "crimes_adulto_juvenil.png", plot = grid.arrange(grafico31, grafico32, grafico33, grafico34, grafico35, grafico36, ncol = 3), dpi = 500)
@@ -333,8 +337,9 @@ grafico37 <- grafico <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria
   geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
   theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5)) +
   theme_void()
-print(grafico37)
 
+
+grid.arrange(grafico37, ncol=1)
 ggsave(filename = "crimes_adulto_juvenil_consumo.png", plot = grid.arrange(grafico37, ncol=1), dpi = 500)
 
 
@@ -424,7 +429,7 @@ ggplot(aes(x = AGE)) +
     guides(fill = guide_legend(title = "Média"))
 
 
-
+grid.arrange(g62, g63, g64, g65, g66, g67, ncol = 3)
 ggsave(filename = "distribuicao_idade_por_tipo.png", plot = grid.arrange(g62, g63, g64, g65, g66, g67, ncol = 3), dpi = 500)
 
 
