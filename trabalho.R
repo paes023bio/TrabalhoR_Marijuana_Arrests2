@@ -140,7 +140,7 @@ gf_Posse_traf_dist+ scale_fill_manual(name="Tipo", values=c("red", "blue"),
 
 
 #scale_alpha_discrete(name="tipo de delito", labels=c("Posse","Tráfico")) #problema em utilizar a funçao scale_alpha_discrete para alterar as labels da legenda para o português
-#vou mexer mais no gráfico depois
+
 
 
 
