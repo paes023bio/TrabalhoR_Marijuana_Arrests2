@@ -1,0 +1,168 @@
+---
+geometry: "margin=1in"
+output:
+  html_document: default
+  pdf_document: default
+---
+<br>    
+<br> 
+![ ](../DirTrabalho/logo2.png)
+<br> 
+<center style="font-size: 18px;" >
+**Universidade Estadual de Campinas – Instituto de Matemática, Estatística e** 
+</center>
+<center style="font-size: 18px;">
+**Computação Científica (IMECC)**
+</center>
+<br> 
+**Disciplina: ME 115 – Linguagem R**
+**Nomes**: Thiago Henrique Paes 256302, Alejandro Francisco Figueiredo 230532, Eddie Aikau Abatepaulo 204248 e João Francisco Figueiredo Miranda  218592.
+<br>  
+<center style="font-size: 25px;" >
+**Conjunto de Dados “Marijuana Arrests in Columbia”**
+</center>
+**Introdução**
+<br>
+<P>   No Distrito de Colúmbia (Washington, D.C., EUA), a polícia da narcóticos, a fim de identificar alguns percentuais e taxas de crimes de apreensão de maconha entre os anos de 2012 e 2022, além de controlar e erradicar, precisa, analítica e estatisticamente, relacionar algumas variáveis e observações em um grande conjunto de dados. Tal conjunto é composto por 13.063 observações (linhas) e 27 variáveis (colunas). Dessa forma, algumas perguntas de interesse foram realizadas com o propósito de solucionar alguns problemas e preencher lacunas existentes.</p>
+<br>
+<h4>Perguntas de interesse:</h4>
+<br>
+<h4>1) Análise das colunas TYPE e OFFENSE_DISTRICT</h4>
+
+<p>a) Qual é o principal tipo de delito relacionado com o maior número de apreensões?</p>
+
+<p>b) Qual o bairro/distrito que ocorre as principais apreensões desse tipo de delito?</p>
+
+<p>c) Gráfico dos crimes de posse e posse com intenção de distribuição (tráfico de maconha) por bairro/distrito dentro do estado de Colúmbia.</p>
+
+<!-- Inserir código para o gráfico aqui -->
+
+<h4>2) Análise das colunas OFFENSE_DISTRICT e DEFENDANT_DISTRICT</h4>
+
+<p>a) Qual o bairro/distrito que ocorre mais apreensões?</p>
+
+<p>b) Qual o bairro/distrito com o maior número de detentos?</p>
+
+<h4>3) Análise das colunas TYPE e ADULT_JUVENILE</h4>
+
+<p>a) Quantas apreensões foram registradas como consumo próprio?</p>
+
+<p>b) Qual a porcentagem de menores detidos por consumo próprio?</p>
+
+<p>c) Qual a porcentagem de menores envolvidos em cada tipo de delito?</p>
+
+<h4>4) Análise das colunas DATETIME e YEAR</h4>
+
+<p>a) Quais são os períodos com maior frequência de tráfico?</p>
+
+<p>b) Qual o horário com maior ocorrência?</p>
+
+<p>c) Qual ano mostrou maior atividade?</p>
+
+<p>d) Analisando os anos, pode apontar uma diferença entre eles?</p>
+
+<h4>5) Análise das colunas AGE e TYPE</h4>
+
+<p>a) Qual a idade média de pessoas envolvidas com algum delito relacionado à maconha?</p>
+
+<h2>Descrição do Conjunto de Dados</h2>
+
+<p> O nome, tipo e a descrição de variável são as seguintes: </p>
+
+| Nome da Variável         | Descrição resumida da variável                            | Tipo da Variável |
+|--------------------------|----------------------------------------------------------|------------------|
+| TYPE (Tipo)              | Indica o tipo de prisão                                  | Texto            |
+| ADULT_JUVENILE           | Especifica se o adulto detido é adulto ou jovem          | Texto            |
+| YEAR (Ano)               | O ano em que ocorreu a prisão                             | Numérico         |
+| DATETIME (Data-Tempo)    | A data e hora da prisão                                  | Numérico         |
+| AGE (Idade)              | A idade do detido no momento da detenção                  | Numérico         |
+| OFFENSE_DISTRICT         | "Bairro" da Ofensa                                       | Texto            |
+| OFFENSE_PSA              | Área de Serviço Policial associada ao acusado             | Numérico         |
+| DEFENDANT_DISTRICT       | "Bairro" do Detento                                      | Texto            |
+| RACE                     | A raça do réu, com base na observação oficial             | Texto            |
+| ETHNICITY                | A etnia do réu, com base na observação oficial            | Texto            |
+| CATEGORY                 | Departamento responsável                                 | Texto            |
+| DESCRIPTION              | Descrição do crime                                       | Texto            |
+| ADDRESS                  | O endereço do local do crime                              | Texto            |
+| CREATOR                  | O criador do registro                                    | Texto            |
+| EDITOR                   | O editor do disco                                        | Texto            |
+| EDITED                   | A data e hora em que o registro foi editado               | Texto            |
+| OBJECTID                 | Identificador único para cada registro                    | Numérico         |
+| GLOBALID                 | Identificador exclusivo global para cada registro         | Numérico         |
+| SEX                      | Sexo do réu                                              | Texto            |
+| CCN                      | Número de hash que permite aos indivíduos determinar se há várias prisões associadas a um evento | Texto |
+| OFFENSE_BLOCKX           | Coordenada X da localização aproximada do bloco da ofensa | Numérico         |
+| OFFENSE_BLOCKY           | Coordenada Y da localização aproximada do bloco da ofensa | Numérico         |
+| ARREST_BLOCKX            | Coordenada X da localização aproximada do bloco da prisão | Numérico         |
+| ARREST_BLOCKY            | Coordenada Y da localização aproximada do bloco da prisão | Numérico         |
+| GIS_ID                   | ID do Sistema de Informações Geográficas (GIS) associado ao registro | Texto |
+| CREATED                  | A data e hora em que o registro foi criado                | Texto            |
+<p>**Fonte:** Disponível em: https://www.usa.gov/government-works/. Acesso em: 24 de junho de 2023.</p>
+
+<h2> 
+Análise Exploratória e Descritiva 
+</h2>
+```{r, echo=FALSE, include=FALSE}
+library(readr)
+library(dplyr)
+library(tidyverse)
+library(stringr)
+library(ggplot2)
+library(ggthemes)
+library(tibble)
+library(gridExtra)
+library(grid)
+```
+<p>
+Primeiro carregamos todas as bibliotecas necessarias que serão utilizadas no código
+</p>
+
+```{r}
+# Importando o banco de dados localmente (caso a url nC#o funcione)
+# Raw_Data <- read_csv("DiretC3rio do arquivo salvo no computador")
+
+# ImportaC'C#o do banco de dados remoto salvo no diretC3rio do github
+Raw_Data <- read_csv(url("https://raw.githubusercontent.com/paes023bio/TrabalhoR_Marijuana_Arrests2/main/Marijuana_Arrests.csv"))
+# VariC!vel chamada de Raw_Data por ser os dados "crus" 
+
+View(Raw_Data)
+str(Raw_Data)
+
+Raw_Data %>% select(TYPE) %>% head(1000) %>% View()
+```
+
+
+```{r}
+# Removendo linhas com informaC'C5es nulas 
+M <- filter(Interest_Data, TYPE!=0 & ADULT_JUVENILE!=0 & DATETIME!=0 & AGE!=0 
+            & RACE!=0 & ETHNICITY!=0 & SEX!=0 & ADDRESS!=0 & DEFENDANT_DISTRICT!=0 
+            & OFFENSE_DISTRICT!=0)
+print(head(M, 50), n=50)
+'''
+A informaC'C#o de que o detido C) maior ou menor de idade C) relevante, mas a descriC'C#o 
+do banco de dados diz que todos menores estC#o com as informaC'C5es em branco por questC5es de privacidade. 
+Portanto todos marcados como "Juvenile" em ADULT_JUVENILE foram removidos junto com todas as outras linhas
+com alguma entrada Nula, entretanto essa variC!vel pode ser utilizada para obter o nC:mero de menores detidos
+e seu tipo de delito.
+'''
+
+# separando a variC!vel DATATIME em ANO, MES, DIA e HORA
+M <- M %>% separate(DATETIME, into = c("ANO", "MES", "DIAHORA"), sep="/")
+M <- M %>% separate(DIAHORA, into = c("DIA", "HORA"), sep=" ")
+# nesse ponto M possui todas as colunas de interesse jC! tratadas (entradas nulas removidas e informaC'C5es concatenadas separadas)
+print(head(M, 100), n=100)
+
+
+# Colocando as entradas da coluna TYPE como tC-tulo
+head(M$TYPE)
+M <- M %>% mutate(TYPE = str_to_title(M$TYPE))
+print(head(M, 100), n=25)
+'''
+Em TYPE aparecem "Public consumption" (c minC:sculo)  e "Public Consumption" (C maiC:sculo). 
+Devido isso a coluna foi transformada em tC-tulo (Palavras comeC'ando com maiC:sculo) 
+'''
+
+M
+# M C) a base de dados tratada pronta para o inC-cio das anC!lises 
+```
+
