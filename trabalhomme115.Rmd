@@ -4,104 +4,189 @@ output:
   html_document: default
   pdf_document: default
 ---
-<br>    
-<br> 
-![ ](../DirTrabalho/logo2.png)
-<br> 
-<center style="font-size: 18px;" >
-**Universidade Estadual de Campinas – Instituto de Matemática, Estatística e** 
-</center>
+
+<br>\
+<br> ![](C:/Users/paes2/Desktop/disciplinas/Linguagem R/trabalho/TrabalhoR_Marijuana_Arrests/logo.jpeg) <br>
+
 <center style="font-size: 18px;">
+
+**Universidade Estadual de Campinas -- Instituto de Matemática, Estatística e**
+
+</center>
+
+<center style="font-size: 18px;">
+
 **Computação Científica (IMECC)**
+
 </center>
-<br> 
-**Disciplina: ME 115 – Linguagem R**
-**Nomes**: Thiago Henrique Paes 256302, Alejandro Francisco Figueiredo 230532, Eddie Aikau Abatepaulo 204248 e João Francisco Figueiredo Miranda  218592.
-<br>  
-<center style="font-size: 25px;" >
-**Conjunto de Dados “Marijuana Arrests in Columbia”**
+
+<br> **Disciplina: ME 115 -- Linguagem R**<br> **Nomes**: Thiago Henrique Paes 256302, Alejandro Francisco Figueiredo 230532, Eddie Aikau Abatepaulo 204248 e João Francisco Figueiredo Miranda 218592. <br>\
+
+<center style="font-size: 25px;">
+
+**Conjunto de Dados "Marijuana Arrests in Columbia"**
+
 </center>
-**Introdução**
+
+<h3>**Introdução**</h3>
+
 <br>
-<P>   No Distrito de Colúmbia (Washington, D.C., EUA), a polícia da narcóticos, a fim de identificar alguns percentuais e taxas de crimes de apreensão de maconha entre os anos de 2012 e 2022, além de controlar e erradicar, precisa, analítica e estatisticamente, relacionar algumas variáveis e observações em um grande conjunto de dados. Tal conjunto é composto por 13.063 observações (linhas) e 27 variáveis (colunas). Dessa forma, algumas perguntas de interesse foram realizadas com o propósito de solucionar alguns problemas e preencher lacunas existentes.</p>
+
+<p style="text-align: justify;"> No Distrito de Colúmbia (Washington, D.C., EUA), a polícia da narcóticos, a fim de identificar alguns percentuais e taxas de crimes de apreensão de maconha entre os anos de 2012 e 2022, além de controlar e erradicar, precisa, analítica e estatisticamente, relacionar algumas variáveis e observações em um grande conjunto de dados. Tal conjunto é composto por 13.063 observações (linhas) e 27 variáveis (colunas). Dessa forma, algumas perguntas de interesse foram realizadas com o propósito de solucionar alguns problemas e preencher lacunas existentes.</p>
+
 <br>
+
 <h4>Perguntas de interesse:</h4>
+
 <br>
-<h4>1) Análise das colunas TYPE e OFFENSE_DISTRICT</h4>
 
-<p>a) Qual é o principal tipo de delito relacionado com o maior número de apreensões?</p>
+<h4>
 
-<p>b) Qual o bairro/distrito que ocorre as principais apreensões desse tipo de delito?</p>
+1)  Análise das colunas TYPE e OFFENSE_DISTRICT
 
-<p>c) Gráfico dos crimes de posse e posse com intenção de distribuição (tráfico de maconha) por bairro/distrito dentro do estado de Colúmbia.</p>
+    </h4>
+
+<p>
+
+a)  Qual é o principal tipo de delito relacionado com o maior número de apreensões?
+
+    </p>
+
+<p>
+
+b)  Qual o bairro/distrito que ocorre as principais apreensões desse tipo de delito?
+
+    </p>
+
+<p>
+
+c)  Gráfico dos crimes de posse e posse com intenção de distribuição (tráfico de maconha) por bairro/distrito dentro do estado de Colúmbia.
+
+    </p>
 
 <!-- Inserir código para o gráfico aqui -->
 
-<h4>2) Análise das colunas OFFENSE_DISTRICT e DEFENDANT_DISTRICT</h4>
+<h4>
 
-<p>a) Qual o bairro/distrito que ocorre mais apreensões?</p>
+2)  Análise das colunas OFFENSE_DISTRICT e DEFENDANT_DISTRICT
 
-<p>b) Qual o bairro/distrito com o maior número de detentos?</p>
+    </h4>
 
-<h4>3) Análise das colunas TYPE e ADULT_JUVENILE</h4>
+<p>
 
-<p>a) Quantas apreensões foram registradas como consumo próprio?</p>
+a)  Qual o bairro/distrito que ocorre mais apreensões?
 
-<p>b) Qual a porcentagem de menores detidos por consumo próprio?</p>
+    </p>
 
-<p>c) Qual a porcentagem de menores envolvidos em cada tipo de delito?</p>
+<p>
 
-<h4>4) Análise das colunas DATETIME e YEAR</h4>
+b)  Qual o bairro/distrito com o maior número de detentos?
 
-<p>a) Quais são os períodos com maior frequência de tráfico?</p>
+    </p>
 
-<p>b) Qual o horário com maior ocorrência?</p>
+<h4>
 
-<p>c) Qual ano mostrou maior atividade?</p>
+3)  Análise das colunas TYPE e ADULT_JUVENILE
 
-<p>d) Analisando os anos, pode apontar uma diferença entre eles?</p>
+    </h4>
 
-<h4>5) Análise das colunas AGE e TYPE</h4>
+<p>
 
-<p>a) Qual a idade média de pessoas envolvidas com algum delito relacionado à maconha?</p>
+a)  Quantas apreensões foram registradas como consumo próprio?
+
+    </p>
+
+<p>
+
+b)  Qual a porcentagem de menores detidos por consumo próprio?
+
+    </p>
+
+<p>
+
+c)  Qual a porcentagem de menores envolvidos em cada tipo de delito?
+
+    </p>
+
+<h4>
+
+4)  Análise das colunas DATETIME e YEAR
+
+    </h4>
+
+<p>
+
+a)  Quais são os períodos com maior frequência de tráfico?
+
+    </p>
+
+<p>
+
+b)  Qual o horário com maior ocorrência?
+
+    </p>
+
+<p>
+
+c)  Qual ano mostrou maior atividade?
+
+    </p>
+
+<p>
+
+d)  Analisando os anos, pode apontar uma diferença entre eles?
+
+    </p>
+
+<h4>
+
+5)  Análise das colunas AGE e TYPE
+
+    </h4>
+
+<p>
+
+a)  Qual a idade média de pessoas envolvidas com algum delito relacionado à maconha?
+
+    </p>
 
 <h2>Descrição do Conjunto de Dados</h2>
 
-<p> O nome, tipo e a descrição de variável são as seguintes: </p>
+<p>O nome, tipo e a descrição de variável são as seguintes: </p>
 
-| Nome da Variável         | Descrição resumida da variável                            | Tipo da Variável |
-|--------------------------|----------------------------------------------------------|------------------|
-| TYPE (Tipo)              | Indica o tipo de prisão                                  | Texto            |
-| ADULT_JUVENILE           | Especifica se o adulto detido é adulto ou jovem          | Texto            |
-| YEAR (Ano)               | O ano em que ocorreu a prisão                             | Numérico         |
-| DATETIME (Data-Tempo)    | A data e hora da prisão                                  | Numérico         |
-| AGE (Idade)              | A idade do detido no momento da detenção                  | Numérico         |
-| OFFENSE_DISTRICT         | "Bairro" da Ofensa                                       | Texto            |
-| OFFENSE_PSA              | Área de Serviço Policial associada ao acusado             | Numérico         |
-| DEFENDANT_DISTRICT       | "Bairro" do Detento                                      | Texto            |
-| RACE                     | A raça do réu, com base na observação oficial             | Texto            |
-| ETHNICITY                | A etnia do réu, com base na observação oficial            | Texto            |
-| CATEGORY                 | Departamento responsável                                 | Texto            |
-| DESCRIPTION              | Descrição do crime                                       | Texto            |
-| ADDRESS                  | O endereço do local do crime                              | Texto            |
-| CREATOR                  | O criador do registro                                    | Texto            |
-| EDITOR                   | O editor do disco                                        | Texto            |
-| EDITED                   | A data e hora em que o registro foi editado               | Texto            |
-| OBJECTID                 | Identificador único para cada registro                    | Numérico         |
-| GLOBALID                 | Identificador exclusivo global para cada registro         | Numérico         |
-| SEX                      | Sexo do réu                                              | Texto            |
-| CCN                      | Número de hash que permite aos indivíduos determinar se há várias prisões associadas a um evento | Texto |
-| OFFENSE_BLOCKX           | Coordenada X da localização aproximada do bloco da ofensa | Numérico         |
-| OFFENSE_BLOCKY           | Coordenada Y da localização aproximada do bloco da ofensa | Numérico         |
-| ARREST_BLOCKX            | Coordenada X da localização aproximada do bloco da prisão | Numérico         |
-| ARREST_BLOCKY            | Coordenada Y da localização aproximada do bloco da prisão | Numérico         |
-| GIS_ID                   | ID do Sistema de Informações Geográficas (GIS) associado ao registro | Texto |
-| CREATED                  | A data e hora em que o registro foi criado                | Texto            |
-<p>**Fonte:** Disponível em: https://www.usa.gov/government-works/. Acesso em: 24 de junho de 2023.</p>
+| Nome da Variável      | Descrição resumida da variável                                                                   | Tipo da Variável  |
+|-----------------|---------------------------------------|-----------------|
+| TYPE (Tipo)           | Indica o tipo de prisão                                                                          | Texto             |
+| ADULT_JUVENILE        | Especifica se o adulto detido é adulto ou jovem                                                  | Texto             |
+| YEAR (Ano)            | O ano em que ocorreu a prisão                                                                    | Numérico          |
+| DATETIME (Data-Tempo) | A data e hora da prisão                                                                          | Numérico          |
+| AGE (Idade)           | A idade do detido no momento da detenção                                                         | Numérico          |
+| OFFENSE_DISTRICT      | "Bairro" da Ofensa                                                                               | Texto             |
+| OFFENSE_PSA           | Área de Serviço Policial associada ao acusado                                                    | Numérico          |
+| DEFENDANT_DISTRICT    | "Bairro" do Detento                                                                              | Texto             |
+| RACE                  | A raça do réu, com base na observação oficial                                                    | Texto             |
+| ETHNICITY             | A etnia do réu, com base na observação oficial                                                   | Texto             |
+| CATEGORY              | Departamento responsável                                                                         | Texto             |
+| DESCRIPTION           | Descrição do crime                                                                               | Texto             |
+| ADDRESS               | O endereço do local do crime                                                                     | Texto             |
+| CREATOR               | O criador do registro                                                                            | Texto             |
+| EDITOR                | O editor do disco                                                                                | Texto             |
+| EDITED                | A data e hora em que o registro foi editado                                                      | Texto             |
+| OBJECTID              | Identificador único para cada registro                                                           | Numérico          |
+| GLOBALID              | Identificador exclusivo global para cada registro                                                | Numérico          |
+| SEX                   | Sexo do réu                                                                                      | Texto             |
+| CCN                   | Número de hash que permite aos indivíduos determinar se há várias prisões associadas a um evento | Texto             |
+| OFFENSE_BLOCKX        | Coordenada X da localização aproximada do bloco da ofensa                                        | Numérico          |
+| OFFENSE_BLOCKY        | Coordenada Y da localização aproximada do bloco da ofensa                                        | Numérico          |
+| ARREST_BLOCKX         | Coordenada X da localização aproximada do bloco da prisão                                        | Numérico          |
+| ARREST_BLOCKY         | Coordenada Y da localização aproximada do bloco da prisão                                        | Numérico          |
+| GIS_ID                | ID do Sistema de Informações Geográficas (GIS) associado ao registro                             | Texto             |
+| CREATED               | A data e hora em que o registro foi criado                                                       | Texto             |
 
-<h2> 
-Análise Exploratória e Descritiva 
-</h2>
+<p>**Fonte:** Disponível em: <https://www.usa.gov/government-works/>. Acesso em: 24 de junho de 2023.</p>
+
+<h2>Análise Exploratória e Descritiva</h2>
+
 ```{r, echo=FALSE, include=FALSE}
 library(readr)
 library(dplyr)
@@ -113,56 +198,494 @@ library(tibble)
 library(gridExtra)
 library(grid)
 ```
-<p>
-Primeiro carregamos todas as bibliotecas necessarias que serão utilizadas no código
-</p>
 
-```{r}
-# Importando o banco de dados localmente (caso a url nC#o funcione)
-# Raw_Data <- read_csv("DiretC3rio do arquivo salvo no computador")
+<p>Primeiro carregamos todas as bibliotecas necessarias que serão utilizadas no código</p>
 
-# ImportaC'C#o do banco de dados remoto salvo no diretC3rio do github
+```{r, echo=F, , include=FALSE}
+#################### Importação do conjunto de dados #######################
+
+# Importando o banco de dados localmente (caso a url não funcione)
+# Raw_Data <- read_csv("Diretório do arquivo salvo no computador")
+
+# Importação do banco de dados remoto salvo no diretório do github
 Raw_Data <- read_csv(url("https://raw.githubusercontent.com/paes023bio/TrabalhoR_Marijuana_Arrests2/main/Marijuana_Arrests.csv"))
-# VariC!vel chamada de Raw_Data por ser os dados "crus" 
+# Variável chamada de Raw_Data por ser os dados "crus" 
 
-View(Raw_Data)
-str(Raw_Data)
 
-Raw_Data %>% select(TYPE) %>% head(1000) %>% View()
+
 ```
 
+```{r, echo=F, , include=F}
+####################### Tratamento dos dados #############################
 
-```{r}
-# Removendo linhas com informaC'C5es nulas 
+# Descrição das variáveis dos dados puros 
+
+# Selecionando colunas de interesse
+variaveis <- c("TYPE", "ADULT_JUVENILE", "DATETIME", "AGE", "RACE", "ETHNICITY", "SEX", "ADDRESS", "DEFENDANT_DISTRICT", "OFFENSE_DISTRICT")
+Interest_Data <- Raw_Data %>% select(variaveis)
+# Interest_Data são os dados com todas as colunas de interesse
+# Foram selecionadas as variáveis que parecem relevantes para as análises propostas
+
+
+# Removendo linhas com informações nulas 
 M <- filter(Interest_Data, TYPE!=0 & ADULT_JUVENILE!=0 & DATETIME!=0 & AGE!=0 
             & RACE!=0 & ETHNICITY!=0 & SEX!=0 & ADDRESS!=0 & DEFENDANT_DISTRICT!=0 
             & OFFENSE_DISTRICT!=0)
 print(head(M, 50), n=50)
-'''
-A informaC'C#o de que o detido C) maior ou menor de idade C) relevante, mas a descriC'C#o 
-do banco de dados diz que todos menores estC#o com as informaC'C5es em branco por questC5es de privacidade. 
-Portanto todos marcados como "Juvenile" em ADULT_JUVENILE foram removidos junto com todas as outras linhas
-com alguma entrada Nula, entretanto essa variC!vel pode ser utilizada para obter o nC:mero de menores detidos
-e seu tipo de delito.
-'''
 
-# separando a variC!vel DATATIME em ANO, MES, DIA e HORA
+
+# separando a variável DATATIME em ANO, MES, DIA e HORA
 M <- M %>% separate(DATETIME, into = c("ANO", "MES", "DIAHORA"), sep="/")
 M <- M %>% separate(DIAHORA, into = c("DIA", "HORA"), sep=" ")
-# nesse ponto M possui todas as colunas de interesse jC! tratadas (entradas nulas removidas e informaC'C5es concatenadas separadas)
+# nesse ponto M possui todas as colunas de interesse já tratadas (entradas nulas removidas e informações concatenadas separadas)
 print(head(M, 100), n=100)
 
 
-# Colocando as entradas da coluna TYPE como tC-tulo
+# Colocando as entradas da coluna TYPE como título
 head(M$TYPE)
 M <- M %>% mutate(TYPE = str_to_title(M$TYPE))
 print(head(M, 100), n=25)
-'''
-Em TYPE aparecem "Public consumption" (c minC:sculo)  e "Public Consumption" (C maiC:sculo). 
-Devido isso a coluna foi transformada em tC-tulo (Palavras comeC'ando com maiC:sculo) 
-'''
+
 
 M
-# M C) a base de dados tratada pronta para o inC-cio das anC!lises 
+# M é a base de dados tratada pronta para o início das análises 
+
+
 ```
+
+```{r, echo=F, include=F}
+
+#################### Perguntas de interesse #####################################
+
+#################################################################################
+# 1. Análise das colunas TYPE e OFFENSE_DISTRICT:
+#a) Qual é o principal tipo de delito relacionado com o maior número de apreensões?
+tipo_delito<- M %>% 
+  group_by(TYPE) %>% 
+  summarise("Numero_De_Delitos" = n())
+tipo_delito %>%select(Numero_De_Delitos) %>% max()
+paste0("O maior tipo de delito de apreensão é posse de maconha, com:  ", tipo_delito$Numero_De_Delitos[4])
+
+#b) Qual o distrito que ocorre as principais apreensões desse tipo de delito? 
+
+local_apreensoes_posse<- M %>% group_by(OFFENSE_DISTRICT,TYPE) %>% 
+  summarise("Numero_De_apreensões" = n()) %>%
+  filter(str_detect(TYPE,pattern = "Possession$"))
+local_apreensoes_posse<- local_apreensoes_posse %>% select(OFFENSE_DISTRICT, Numero_De_apreensões)%>% arrange(Numero_De_apreensões)
+paste0("O distrito em que ocorre o maior número de apreensões por posse é: ", local_apreensoes_posse$OFFENSE_DISTRICT[8], ", com: ", local_apreensoes_posse$Numero_De_apreensões[8])
+
+#c) Gráfico dos crimes de posse e posse com intenção de distribuição (tráfico de maconha) por distritos dentro do estado:
+dist_posse_traf<- M %>% group_by(OFFENSE_DISTRICT,TYPE) %>% 
+  summarise("Numero_De_apreensões" = n()) %>%
+  filter(str_detect(TYPE,pattern = "Possession"))
+
+dist_posse_traf<- rename(dist_posse_traf, c(Distritos= OFFENSE_DISTRICT, Tipo_de_Delito=TYPE))#alterando o nome de algumas colunas para o português
+
+dist_posse_traf<- dist_posse_traf%>% filter(str_detect(Distritos,pattern = ".D$"))#tirando os delitos comentidos fora do Estado
+
+gf_Posse_traf_dist<- dist_posse_traf %>% ggplot(aes(x=Distritos, y=Numero_De_apreensões, color=Tipo_de_Delito)) + geom_point(size=4, shape=120)+
+  labs(title = "Posse e Tráfico de Maconha por Distritos Dentro do Estado",
+       x="Distritos", y="Número de Apreensões", color="Tipo")
+gf_Posse_traf_dist+ scale_fill_manual(name="Tipo", values=c("red", "blue"),
+                                      label=c("Posse", "Tráfico"))+ theme(plot.title = element_text(size = 12,hjust=0.5),
+                                                                           panel.background = element_rect(fill = "grey98"),legend.position = "bottom")
+
+
+#scale_alpha_discrete(name="tipo de delito", labels=c("Posse","Tráfico")) #problema em utilizar a funçao scale_alpha_discrete para alterar as labels da legenda para o português
+
+####################################################################################
+# 2.
+# a)Qual o distrito que ocorre mais apreensões (coluna OFFENSE_DISTRICT)? 
+n_apDist<-M %>% group_by(OFFENSE_DISTRICT) %>% 
+  summarise("Numero_De_apreensões" = n())%>% arrange()
+paste0("7D: ", max(n_apDist$Numero_De_apreensões))
+
+# b)Qual o distrito com o maior número de detentos(coluna DEFENDANT_DISTRICT)?
+n_dtDist<- M %>% group_by(DEFENDANT_DISTRICT) %>% 
+  summarise("Numero_De_Detentos" = n())
+paste0("7D: ", max(max(n_dtDist$Numero_De_Detentos)), " detentos")
+####################################################################################
+# 3. Quantas apreensões foram registradas por consumo próprio? Desse número, quais são as porcentagens entre jovens e adultos? 
+
+
+
+####### Tratamento de dados para pergunta 3
+# Juntando as colunas por tipo e somando o número total de cada tipo de delito 
+Interest_Data <- Interest_Data %>% mutate(TYPE = str_to_title(Interest_Data$TYPE))
+adult_juvenile_rate <- Interest_Data %>% 
+  group_by(TYPE) %>% 
+  summarise("Numero_De_Delitos" = n())
+adult_juvenile_rate 
+
+# Adicionando a coluna com número de detidos maiores de idade por tipo de crime 
+num_maiores <- Interest_Data %>% 
+  group_by(TYPE) %>% 
+  filter(ADULT_JUVENILE == "Adult") %>%
+  summarise("Maiores De Idade" = n()) %>%
+  select("Maiores De Idade")
+adult_juvenile_rate <- adult_juvenile_rate %>% mutate(num_maiores)
+
+# Adicionando a coluna com número de detidos menores de idade por tipo de crime 
+num_menores <- Interest_Data %>% 
+  group_by(TYPE) %>% 
+  filter(ADULT_JUVENILE == "Juvenile") %>%
+  summarise("Menores De Idade" = n()) %>%
+  select("Menores De Idade") 
+num_menores <- num_menores %>% add_row("Menores De Idade" = 0, .before = 1) 
+num_menores <- num_menores %>% add_row("Menores De Idade" = 0, .before = 3) 
+adult_juvenile_rate <- adult_juvenile_rate %>% mutate(num_menores)
+
+
+# Adicionando a coluna com número de detidos com idade desconhecida por tipo de crime 
+idade_des <- Interest_Data %>% 
+  group_by(TYPE) %>% 
+  filter(ADULT_JUVENILE == "Unknown") %>%
+  summarise("Idade_Desconhecida" = n()) %>%
+  select("Idade_Desconhecida")
+idade_des  <- idade_des   %>% add_row("Idade_Desconhecida" = 0, .before = 1) 
+idade_des  <- idade_des   %>% add_row("Idade_Desconhecida" = 0, .before = 3) 
+adult_juvenile_rate <- adult_juvenile_rate %>% mutate(idade_des)
+
+# Tabela Pronta
+adult_juvenile_rate 
+
+
+
+###############  graficos de porcentagem adulto/juvenil para todos os tipos de crime 
+# Gráficos
+names <- adult_juvenile_rate %>% names() 
+
+
+# Cultivo  
+values <- adult_juvenile_rate %>% slice(1) %>% unname() %>% unlist() %>% as.integer()
+dados <- data.frame(Faixa_Etaria = names[-c(1,2,5)],
+                    valor = values[-c(1,2,5)])
+total <- sum(dados$valor)
+dados$percentual <- dados$valor / total * 100
+grafico31 <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Cultivo") +
+  labs(fill = "Categoria") +
+  geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
+  theme_void()
+
+# Distribuição 
+values <- adult_juvenile_rate %>% slice(2) %>% unname() %>% unlist() %>% as.integer()
+dados <- data.frame(Faixa_Etaria = names[-c(1,2,5)],
+                    valor = values[-c(1,2,5)])
+total <- sum(dados$valor)
+dados$percentual <- dados$valor / total * 100
+grafico32 <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Distribuição") +
+  labs(fill = "Categoria") +
+  geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
+  theme_void()
+
+# Manufatura
+values <- adult_juvenile_rate %>% slice(3) %>% unname() %>% unlist() %>% as.integer()
+dados <- data.frame(Faixa_Etaria = names[-c(1,2,5)],
+                    valor = values[-c(1,2,5)])
+total <- sum(dados$valor)
+dados$percentual <- dados$valor / total * 100
+grafico33 <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Manufatura") +
+  labs(fill = "Categoria") +
+  geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
+  theme_void()
+
+# Posse
+values <- adult_juvenile_rate %>% slice(4) %>% unname() %>% unlist() %>% as.integer()
+dados <- data.frame(Faixa_Etaria = names[-c(1,2,5)],
+                    valor = values[-c(1,2,5)])
+total <- sum(dados$valor)
+dados$percentual <- dados$valor / total * 100
+grafico34 <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Posse") +
+  labs(fill = "Categoria") +
+  geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
+  theme_void()
+
+# Posse com intenção de distribuição
+values <- adult_juvenile_rate %>% slice(5) %>% unname() %>% unlist() %>% as.integer()
+dados <- data.frame(Faixa_Etaria = names[-c(1,2,5)],
+                    valor = values[-c(1,2,5)])
+total <- sum(dados$valor)
+dados$percentual <- dados$valor / total * 100
+grafico35 <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria), title = "Cultivo") +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Posse com intenção de distribuição") +
+  labs(fill = "Categoria") +
+  geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
+  theme_void()
+
+# Consumo Público 
+values <- adult_juvenile_rate %>% slice(6) %>% unname() %>% unlist() %>% as.integer()
+dados <- data.frame(Faixa_Etaria = names[-c(1,2,5)],
+                    valor = values[-c(1,2,5)])
+total <- sum(dados$valor)
+dados$percentual <- dados$valor / total * 100
+grafico36 <- grafico <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria), title = "Cultivo") +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Consumo Público") +
+  labs(fill = "Categoria") +
+  geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
+  theme_void()
+
+
+# imprime o grafico numa única imagem
+grid.arrange(grafico31, grafico32, grafico33, grafico34, grafico35, grafico36, ncol = 3)
+
+#essa função salva o grafico como png
+ggsave(filename = "crimes_adulto_juvenil.png", plot = grid.arrange(grafico31, grafico32, grafico33, grafico34, grafico35, grafico36, ncol = 3), dpi = 500)
+
+
+
+##### Considerando consumo próprio as categorias "posse" (sem intenção de distribuição) e "consumo publico" como 
+# posse para consumo próprio temos
+values1 <- adult_juvenile_rate %>% slice(4) %>% unname() %>% unlist() %>% as.integer()
+values2 <- adult_juvenile_rate %>% slice(6) %>% unname() %>% unlist() %>% as.integer()
+values1
+
+# valor total de detidos por consumo próprio
+valor_total_por_consumo_proprio <- sum(values1[-c(1,2)]) + sum(values2[-c(1,2)])
+valor_total_por_consumo_proprio
+
+# porcentagem adulto/juvenil de detidos por consumo próprio
+dados <- data.frame(Faixa_Etaria = names[-c(1,2,5)],
+                    valor = values1[-c(1,2,5)] + values2[-c(1,2,5)])
+total <- sum(dados$valor)
+dados$percentual <- dados$valor / total * 100
+grafico37 <- grafico <- ggplot(dados, aes(x = "", y = valor, fill = Faixa_Etaria)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Porcentagem Audulto/Jovem de Consumo Próprio") +
+  labs(fill = "Categoria") +
+  geom_text(aes(label = paste0(round(percentual),"%")), position = position_stack(vjust = 0.5)) +
+  theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5)) +
+  theme_void()
+
+
+grid.arrange(grafico37, ncol=1)
+ggsave(filename = "crimes_adulto_juvenil_consumo.png", plot = grid.arrange(grafico37, ncol=1), dpi = 500)
+
+
+#####################################################################################
+# 4. A maior parte dos delitos ocorreram em qual período do dia (manhã, tarde, noite)? Qual mês do ano ocorre mais delitos? 
+
+
+
+#####grafico periodo######
+
+data <- Raw_Data$DATETIME
+data_nova <- separate(Raw_Data, DATETIME, into = c("data", "horario"), sep = " ")
+data_nova$horario
+data_nova$horario <- substr(data_nova$horario, 1, 8)
+print(data_nova$horario)
+data_nova$horario <- substr(data_nova$horario, 1, 2)
+data_horario <- data_nova
+print(data_nova$horario)
+data_nova <- data_nova %>%
+  mutate(horario = if_else(str_detect(horario, "^(00|01|02|03|04|05)$"), "madrugada", horario))
+data_nova <- data_nova %>%
+  mutate(horario = if_else(str_detect(horario, "^(06|07|08|09|10|11)$"), "manha", horario))
+data_nova <- data_nova %>%
+  mutate(horario = if_else(str_detect(horario, "^(12|13|14|15|16|17)$"), "tarde", horario))
+data_nova <- data_nova %>%
+  mutate(horario = if_else(str_detect(horario, "^(18|19|20|21|22|23)$"), "noite", horario))
+total_elementos <- length(data_nova$horario)
+frequencia <- table(data_nova$horario)
+cores <- c("#f4ff7a", "#87f3ff","#8787ff", "#44f24a")
+gf_ale2<-pie(frequencia, col = cores, border = "NA")
+data_horario_1 <- data_horario %>%
+  mutate(horario = if_else(str_detect(horario, "^(00|01)$"), "00", horario))
+data_horario_1 <- data_horario_1 %>%
+  mutate(horario = if_else(str_detect(horario, "^(02|03)$"), "02", horario))
+data_horario_1 <- data_horario_1 %>%
+  mutate(horario = if_else(str_detect(horario, "^(04|05)$"), "04", horario))
+data_horario_1 <- data_horario_1 %>%
+  mutate(horario = if_else(str_detect(horario, "^(06|07)$"), "06", horario))
+data_horario_1 <- data_horario_1 %>%
+  mutate(horario = if_else(str_detect(horario, "^(08|09)$"), "08", horario))
+data_horario_1 <- data_horario_1 %>%
+  mutate(horario = if_else(str_detect(horario, "^(10|11)$"), "10", horario))
+data_horario_1 <- data_horario_1 %>%
+  mutate(horario = if_else(str_detect(horario, "^(12|13)$"), "12", horario))
+data_horario_1 <- data_horario_1 %>%
+  mutate(horario = if_else(str_detect(horario, "^(14|15)$"), "14", horario))
+data_horario_1 <- data_horario_1 %>%
+  mutate(horario = if_else(str_detect(horario, "^(16|17)$"), "16", horario))
+data_horario_1 <- data_horario_1 %>%
+  mutate(horario = if_else(str_detect(horario, "^(18|19)$"), "18", horario))
+data_horario_1 <- data_horario_1 %>%
+  mutate(horario = if_else(str_detect(horario, "^(20|21)$"), "20", horario))
+data_horario_1 <- data_horario_1 %>%
+  mutate(horario = if_else(str_detect(horario, "^(22|23)$"), "22", horario))
+frequencia_1 <- table(data_horario_1$horario)
+cores_1 <- c("#f4ff7a", "#87f3ff","#8787ff", "#44f24a","#83fcf0", "#6084fc","#9c2bff", "#bd61fa", "#fc8187","#fccf81", "#44f24a", "#87f3ff")
+gf_ale<- pie(frequencia_1, col = cores_1,  border = "NA")
+
+########grafico anos#######
+data_ano <- Raw_Data$YEAR
+frequencia_data <- table(Raw_Data$YEAR)
+print(data_ano)
+cores_1 <- c("#f4ff7a", "#87f3ff","#8787ff", "#44f24a","#83fcf0", "#6084fc","#9c2bff", "#bd61fa", "#fc8187","#fccf81", "#44f24a")
+gf_ale3<-pie(frequencia_data, col = cores_1, border = "NA")
+
+# Contando a frequência dos elementos na coluna "YEAR"
+frequencia <- table(data_nova$YEAR)
+
+# Criando o gráfico de colunas
+gf_ale4<- barplot(frequencia, main = "Gráfico de Colunas - Frequência por Ano", xlab = "Ano", ylab = "")
+
+# Adicionando um rótulo ao eixo y
+title(ylab = "Frequência")
+
+#####################################################################################################
+# 5. Qual a idade média de pessoas envolvidas com crimes de tráfego de maconha?
+apidade <- M %>% select(TYPE, AGE)
+apidade %>% group_by(TYPE) %>% summarise()
+
+max(apidade$AGE)
+min(apidade$AGE)
+mean(apidade$AGE)
+
+g61 <- apidade %>% 
+    ggplot(aes(x = AGE)) +
+    geom_histogram(binwidth=1,  
+                  color = 1, 
+                  fill = 4) +
+    labs(x = "Idade", y = "Número de detidos",
+    title = "Detidos envolvidos em qualquer tipo de crime") +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5))
+
+g62 <- filter(apidade, TYPE == "Cultivation") %>%
+ggplot(aes(x = AGE)) +
+    geom_histogram(binwidth=1,  
+                  color = 1, 
+                  fill = 4) +
+    labs(x = "Idade", y = "Número de detidos",
+    title = "Detidos por cultivo") +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5))
+
+g63 <- filter(apidade, TYPE == "Distribution") %>%
+ggplot(aes(x = AGE)) +
+    geom_histogram(binwidth=1,  
+                  color = 1, 
+                  fill = 4) +
+    labs(x = "Idade", y = "Número de detidos",
+    title = "Detidos por distribuição") +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5))
+
+g64 <- filter(apidade, TYPE == "Manufacture") %>%
+ggplot(aes(x = AGE)) +
+    geom_histogram(binwidth=1,  
+                  color = 1, 
+                  fill = 4) +
+    labs(x = "Idade", y = "Número de detidos",
+    title = "Detidos por manufatura") +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5))
+
+g65 <- filter(apidade, TYPE == "Possession") %>%
+ggplot(aes(x = AGE)) +
+    geom_histogram(binwidth=1,  
+                  color = 1, 
+                  fill = 4) +
+    labs(x = "Idade", y = "Número de detidos",
+    title = "Detidos por posse") +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5))
+
+g66 <- filter(apidade, TYPE == "Possession With Intent To Distribute") %>%
+ggplot(aes(x = AGE)) +
+    geom_histogram(binwidth=1,  
+                  color = 1, 
+                  fill = 4) +
+    labs(x = "Idade", y = "Número de detidos",
+    title = "Detidos por posse com intensão de distribuição") +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5))
+
+g67 <- filter(apidade, TYPE == "Public Consumption") %>%
+ggplot(aes(x = AGE)) +
+    geom_histogram(binwidth=1,  
+                  color = 1, 
+                  fill = 4) +
+    labs(x = "Idade", y = "Número de detidos",
+    title = "Detidos por uso em público") +
+    theme(plot.title = element_text(hjust = 0.5), plot.subtitle =element_text(hjust = 0.5)) +
+    guides(fill = guide_legend(title = "Média"))
+
+
+grid.arrange(g62, g63, g64, g65, g66, g67, ncol = 3)
+ggsave(filename = "distribuicao_idade_por_tipo.png", plot = grid.arrange(g62, g63, g64, g65, g66, g67, ncol = 3), dpi = 500)
+
+
+M %>% group_by(ANO) %>% summarise(n())
+```
+
+<h3>Gráficos das Análises</h3>
+```{r, echo=F, include=T}
+
+
+print(gf_Posse_traf_dist)
+# print(gf_ale)
+# print(gf_ale2)
+# print(gf_ale3)
+# print(gf_ale4)
+print(grafico31)
+print(grafico32)
+print(grafico33)
+print(grafico34)
+print(grafico35)
+print(grafico36)
+print(grafico37)
+
+print(g61)
+print(g62)
+print(g63)
+print(g64)
+print(g65)
+print(g66)
+print(g67)
+
+```
+![](C:/Users/paes2/Desktop/disciplinas/Linguagem R/trabalho/TrabalhoR_Marijuana_Arrests/periodos.jpeg) 
+![](C:/Users/paes2/Desktop/disciplinas/Linguagem R/trabalho/TrabalhoR_Marijuana_Arrests/anos.jpeg) 
+![](C:/Users/paes2/Desktop/disciplinas/Linguagem R/trabalho/TrabalhoR_Marijuana_Arrests/horas.jpeg) 
+![](C:/Users/paes2/Desktop/disciplinas/Linguagem R/trabalho/TrabalhoR_Marijuana_Arrests/anosbar.jpeg) 
+ <h3>**Conclusão**</h3>
+ <p style="text-align: justify;">
+   Com base nas análises realizadas, foi possível aferir algumas pontuações. Primeiramente, em relação às observações um e dois, o Distrito de Colúmbia apresenta bairros com maiores índices de apreensões. O Distrito 7, localizado na fronteira com o estado de Maryland, possui as maiores taxas de criminalidade por tráfico de maconha e na quantidade no número de detentos. Por isso, o Governo de Washington D.C. deve concentrar sua atenção nessa região, aumentando a força policial, inclusive com parceria com o estado de Maryland, tendo em vista que grande parte das drogas podem vir de fora, ou seja, de outro estado. Além disso, para evitar possíveis sobrecargas no número de detentos desse distrito, deve-se construir mais infraestruturas de contenção.
+</p>
+
+<p style="text-align: justify;">
+   Por outro lado, o número de apreensões por posse de maconha foi maior no distrito 3, localizado na extremidade oposta ao distrito número 7. Supostamente, a droga pode ter passado pelos outros distritos até chegar nele (por meio de alguma brecha), ou ainda, ter vindo de outro estados. Desse modo, no distrito 3, seria interessante a criação de campanhas de conscientização, evitando problemas de saúde relacionados à droga em questão.
+</p>
+
+<p style="text-align: justify;">
+   Pode-se observar que o tráfico de drogas ocorre durante a noite e madrugada, levantando a hipótese de que esse horário é mais discreto em relação ao dia e conta com uma presença policial menor em comparação à manhã. Além disso, esse período também coincide com festas, sendo um momento em que as pessoas têm maior propensão a fazer uso de drogas.
+</p>
+
+<p style="text-align: justify;">
+   Analisando os anos de 2012 até 2021, foi observado que em 2012 houve a liberação do uso de 28 gramas de maconha para adultos acima de 21 anos. Essa medida resultou em uma pequena queda no tráfico de maconha. Em 2015, ocorreu a legalização de 60 gramas de maconha por adulto, além da permissão para o cultivo de 6 plantas de maconha em casa. Essas ações contribuíram para uma queda significativa no número de casos de tráfico. No entanto, houve um aumento gradual até 2018, quando foram identificadas algumas irregularidades na legislação, como o uso de "presentes" para burlar as regras. Diante disso, novos regulamentos foram estabelecidos, resultando em uma nova redução no tráfico, atingindo patamares ainda mais baixos em comparação a 2012.
+</p>
+
+<p style="text-align: justify;">
+   Com a análise 3 é possível perceber que a porcentagem de envolvimento de menores com maconha não é muito alta, entretanto, vemos com a análise 5 é possível perceber que a maior parte dos detidos está na faixa dos 20 aos 25, ou seja,
+
+ 
+ <h3>**Bibliografia**</h3>
+<h5>Banco de Dados</h5>
+<p><a href="https://www.kaggle.com/datasets/utkarshx27/marijuana-arrests-in-columbia">https://www.kaggle.com/datasets/utkarshx27/marijuana-arrests-in-columbia</a></p>
+
+<h5>Documentação do R</h5>
+<p><a href="https://www.r-project.org/other-docs.html">https://www.r-project.org/other-docs.html</a></p>
+
 

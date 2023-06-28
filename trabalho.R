@@ -349,6 +349,10 @@ ggsave(filename = "crimes_adulto_juvenil_consumo.png", plot = grid.arrange(grafi
 
 #####################################################################################
 # 4. A maior parte dos delitos ocorreram em qual período do dia (manhã, tarde, noite)? 
+
+
+
+
 # 5. Qual mês do ano ocorre mais delitos? 
 
 
